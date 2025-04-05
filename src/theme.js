@@ -21,6 +21,11 @@ const theme = createTheme({
     //palette: {
     //  secondary: teal,
     //},
+    //palette: {
+    //  secondary: {
+    //    main: "#FF5733", // Thay đổi màu thứ cấp
+    //  },
+    //},
   },
   // ... other properties
   components: {
@@ -32,10 +37,13 @@ const theme = createTheme({
           alignItems: "center",
           gap: 20,
           width: "12rem",
-          justifyContent: "left",
+          justifyContent: "flex-start",
           marginBottom: 50,
           marginLeft: 12,
           cursor: "pointer",
+          color: "#fff",
+          overflow: "hidden",
+          //minWidth: "3vw",
         },
       },
     },

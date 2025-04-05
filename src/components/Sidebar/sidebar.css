@@ -1,0 +1,93 @@
+.btn-style701 {
+  position: relative;
+  border: none;
+  color: #dd6395;
+}
+
+.btn-style701::before,
+.btn-style701::after,
+.btn-style701 span::before,
+.btn-style701 span::after {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  transition: all 0.5s;
+  border: 3px solid #dd6395;
+  opacity: 0;
+  content: "";
+}
+.btn-style701::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+  transform: translate(-50%, -50%);
+}
+.btn-style701::after {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+  transform: translate(-50%, 50%);
+}
+.btn-style701 span::before {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+  transform: translate(50%, -50%);
+}
+.btn-style701 span::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+  transform: translate(50%, 50%);
+}
+.btn-style701:hover {
+  font-size: 16.5px;
+  color: #dd2470;
+}
+.btn-style701:hover::before,
+.btn-style701:hover::after,
+.btn-style701:hover span::before,
+.btn-style701:hover span::after {
+  opacity: 1;
+  border-color: #dd2470;
+  transform: translate(0%, 0%);
+}
+
+/* animation for icon */
+.icon-rotate {
+  transition: transform 0.5s ease; /* Chỉ định hiệu ứng xoay */
+}
+
+.icon-rotate.active {
+  transform: rotate(180deg); /* Xoay 180 độ khi active */
+}
+
+/* logo animation */
+.logo {
+  display: inline-block;
+  overflow: hidden; /* Ẩn phần chữ chưa hiển thị */
+  white-space: nowrap; /* Không xuống dòng */
+  border-right: 2px solid; /* Hiệu ứng gạch chân */
+  animation: typing 1.5s steps(10) forwards, blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0; /* Bắt đầu với chiều rộng 0 */
+  }
+
+  to {
+    width: 100%; /* Kết thúc với chiều rộng đầy đủ */
+    border-right: none;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent; /* Hiệu ứng nhấp nháy */
+  }
+}

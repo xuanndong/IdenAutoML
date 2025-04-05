@@ -4,14 +4,17 @@ import React from "react";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Chat from "./Chat/chat";
+import Chat from "./../Chat/chat";
 
 // import icon from svg
-import ArOnIcon from "./../assets/ar_on_you";
-import ArStickIcon from "./../assets/ar_stickers";
-import EyeTrackIcon from "./../assets/eye_tracking";
+import ArOnIcon from "./../../assets/ar_on_you";
+import ArStickIcon from "./../../assets/ar_stickers";
+import EyeTrackIcon from "./../../assets/eye_tracking";
 
-function Main() {
+// import css
+import "./maincontent.css";
+
+function Main({ chatHistory }) {
   return (
     <>
       <Paper
@@ -27,25 +30,18 @@ function Main() {
           alignItems: "center",
         }}
       >
-        <Box sx={{}}>
-          <Typography variant="h6" sx={{ fontSize: 32, fontWeight: "bold" }}>
-            Have you a good day! 😊
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              marginBottom: 6,
-              fontSize: 32,
-              fontWeight: "bold",
-              color: "#8A8787",
-            }}
-          >
+        <Box>
+          <p className="cursor typewriter-animation">Have you a good day! 😊</p>
+          <br />
+          <p className="text cursor typewriter-animation">
             How can I help you today?
-          </Typography>
+          </p>
 
           {/*Features*/}
           <div
+            className="slide-up"
             style={{
+              visibility: "hidden",
               display: "flex",
               alignItems: "center",
               gap: 18,
@@ -130,8 +126,9 @@ function Main() {
               </Typography>
             </Box>
           </div>
+          {/*Features*/}
         </Box>
-        <Chat />
+        <Chat chatHistory={chatHistory} />
       </Paper>
     </>
   );
