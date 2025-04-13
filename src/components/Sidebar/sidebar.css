@@ -1,93 +1,290 @@
-.btn-style701 {
-  position: relative;
-  border: none;
-  color: #dd6395;
+/* Sidebar CSS */
+
+/*Sidebar*/
+.sidebar {
+  display: block;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  width: 250px;
+  padding: 10px 14px;
+  background: var(--sidebar-color);
+  transition: var(--tran-05);
+  z-index: 100;
+
 }
 
-.btn-style701::before,
-.btn-style701::after,
-.btn-style701 span::before,
-.btn-style701 span::after {
-  width: 8px;
-  height: 8px;
-  position: absolute;
-  transition: all 0.5s;
-  border: 3px solid #dd6395;
-  opacity: 0;
-  content: "";
+body.dark .sidebar {
+  background: #181818;
 }
-.btn-style701::before {
-  top: 0;
-  left: 0;
-  border-right: none;
-  border-bottom: none;
-  transform: translate(-50%, -50%);
+
+.sidebar.close {
+  width: 88px; /*78*/
 }
-.btn-style701::after {
-  bottom: 0;
-  left: 0;
-  border-right: none;
-  border-top: none;
-  transform: translate(-50%, 50%);
-}
-.btn-style701 span::before {
-  top: 0;
-  right: 0;
-  border-left: none;
-  border-bottom: none;
-  transform: translate(50%, -50%);
-}
-.btn-style701 span::after {
-  bottom: 0;
-  right: 0;
-  border-left: none;
-  border-top: none;
-  transform: translate(50%, 50%);
-}
-.btn-style701:hover {
-  font-size: 16.5px;
-  color: #dd2470;
-}
-.btn-style701:hover::before,
-.btn-style701:hover::after,
-.btn-style701:hover span::before,
-.btn-style701:hover span::after {
+
+/*Resuable CSS*/
+.sidebar .text {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: var(--tran-03);
+  white-space: nowrap;
   opacity: 1;
-  border-color: #dd2470;
-  transform: translate(0%, 0%);
 }
 
-/* animation for icon */
-.icon-rotate {
-  transition: transform 0.5s ease; /* Chỉ định hiệu ứng xoay */
+body.dark .sidebar .text {
+  color: rgb(245, 245, 241);
 }
 
-.icon-rotate.active {
-  transform: rotate(180deg); /* Xoay 180 độ khi active */
+body.dark .sidebar .icon {
+  color: rgb(253, 253, 253);
 }
 
-/* logo animation */
-.logo {
-  display: inline-block;
-  overflow: hidden; /* Ẩn phần chữ chưa hiển thị */
-  white-space: nowrap; /* Không xuống dòng */
-  border-right: 2px solid; /* Hiệu ứng gạch chân */
-  animation: typing 1.5s steps(10) forwards, blink 0.75s step-end infinite;
+
+
+.sidebar .mode-text.text {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: var(--tran-03);
+  white-space: nowrap;
+  opacity: 1;
 }
 
-@keyframes typing {
-  from {
-    width: 0; /* Bắt đầu với chiều rộng 0 */
-  }
-
-  to {
-    width: 100%; /* Kết thúc với chiều rộng đầy đủ */
-    border-right: none;
-  }
+body.dark .mode-text.text {
+  color: #0c0c0e;
 }
 
-@keyframes blink {
-  50% {
-    border-color: transparent; /* Hiệu ứng nhấp nháy */
-  }
+.sidebar.close .text {
+  opacity: 0;
+}
+
+.sidebar .image {
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--tran-05);
+}
+
+body.dark .image {
+  color: #e9f80e;
+}
+
+.sidebar li {
+  height: 50px;
+  margin-top: 10px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.sidebar li .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+}
+
+.sidebar li .icon,
+.sidebar li .text {
+  color: var(--text-color);
+  transition: var(--tran-05);
+}
+
+.sidebar header {
+  position: relative;
+}
+
+.sidebar .image-text img {
+  width: 40px;
+  border-radius: 6px;
+}
+
+.sidebar header .image-text {
+  display: flex;
+  align-items: center;
+}
+
+.menu-links {
+  padding: 0;
+}
+
+
+header .image-text .header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-text .name {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+body.dark .name {
+  color: aliceblue;
+}
+
+.sidebar header .toggle {
+  position: absolute;
+  top: 50%;
+  right: -28px;
+  transform: translateY(-50%) rotate(180deg);
+  height: 30px;
+  width: 30px;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #0c0c0e;
+  font-size: 22px;
+  transition: var(--tran-03);
+}
+
+.toggle:hover {
+  cursor: pointer;
+}
+
+.sidebar.close header .toggle {
+  transform: translateY(-50%);
+}
+
+body.dark .sidebar header .toggle {
+  background: #f09258;
+  color: #00ffe1;
+}
+
+.sidebar .menu {
+  margin-top: 35px;
+}
+
+/* .sidebar .search-box {
+  background: var(--primary-color-light);
+  border-radius: 6px;
+  transition: var(--tran-05);
+}
+
+.search-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  background: var(--primary-color-light);
+  transition: var(--tran-05);
+} */
+
+.sidebar li .in {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: var(--tran-05);
+  cursor: pointer;
+}
+
+.sidebar li .in:hover {
+  background: var(--primary-color)
+}
+
+body.dark .sidebar li .in:hover {
+  background: #5cefde;
+}
+
+body.dark .sidebar li .in:hover .icon,
+body.dark .sidebar li .in:hover .text {
+  color: #7c54f3;
+}
+
+.sidebar li .in:hover .icon,
+.sidebar li .in:hover .text {
+  color: var(--sidebar-color);
+}
+
+.sidebar .menu-bar {
+  height: calc(100% - 30px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-bar .mode {
+  margin-bottom: 1rem;
+  position: relative;
+  border-radius: 6px;
+  background: var(--primary-color-light);
+}
+
+
+.menu-bar .mode .moon-sun {
+  height: 50px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.menu-bar .mode .icon {
+  position: absolute;
+  transition: var(--tran-05);
+}
+
+.menu-bar .mode .icon.sun {
+  opacity: 0;
+}
+
+body.dark .menu-bar .mode .icon.sun {
+  opacity: 1;
+  color: #0c0c0e;
+}
+
+body.dark .menu-bar .mode .icon.moon {
+  opacity: 0;
+  color: #0c0c0e;
+}
+
+.menu-bar .mode .toggle-switch {
+  position: absolute;
+  right: 0;
+  display: flex;
+  height: 100%;
+  min-width: 60px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 6px;
+  background: var(--primary-color-light);
+  transition: var(--tran-05);
+} 
+
+
+.toggle-switch .switch {
+  position: relative;
+  height: 22px;
+  width: 44px;
+  border-radius: 25px;
+  background: var(--toggle-color);
+}
+
+.switch::before {
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  background: var(--sidebar-color);
+  transition: var(--tran-05);
+}
+
+body.dark .switch::before {
+  left: 24px;
+  background: var(--primary-color);
 }

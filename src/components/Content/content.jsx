@@ -1,38 +1,30 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 // other import
-import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Chat from "./../Chat/chat";
+import Chat from "../Chat/chat";
 
 // import icon from svg
-import ArOnIcon from "./../../assets/ar_on_you";
-import ArStickIcon from "./../../assets/ar_stickers";
-import EyeTrackIcon from "./../../assets/eye_tracking";
+import ArOnIcon from "../../assets/ar_on_you";
+import ArStickIcon from "../../assets/ar_stickers";
+import EyeTrackIcon from "../../assets/eye_tracking";
 
 // import css
 import "./maincontent.css";
 
-function Main({ chatHistory }) {
+function Main({
+  chatBodyRef,
+  chatHistory,
+  setImageOpen,
+  setChooseImage,
+  initScreen,
+}) {
   return (
     <>
-      <Paper
-        sx={{
-          height: "100vh",
-          width: "100vw",
-          backgroundColor: "#ffffff",
-          margin: 1.5,
-          borderRadius: 3,
-          display: "flex",
-          flexDirection: "column",
-          paddingTop: 6,
-          alignItems: "center",
-        }}
-      >
-        <Box>
+      <section className="home">
+        <div className="main" style={{ display: initScreen ? "none" : "flex" }}>
           <p className="cursor typewriter-animation">Have you a good day! 😊</p>
-          <br />
           <p className="text cursor typewriter-animation">
             How can I help you today?
           </p>
@@ -51,6 +43,7 @@ function Main({ chatHistory }) {
               sx={{
                 height: "183px",
                 width: "249px",
+                padding: "24px 34px",
                 backgroundColor: "#4698B3",
                 borderRadius: "10px",
                 padding: 2,
@@ -77,6 +70,7 @@ function Main({ chatHistory }) {
               sx={{
                 height: "183px",
                 width: "249px",
+                padding: "25px 34px",
                 backgroundColor: "#B73ED2",
                 borderRadius: "10px",
                 padding: 2,
@@ -103,6 +97,7 @@ function Main({ chatHistory }) {
               sx={{
                 height: "183px",
                 width: "249px",
+                padding: "25px 34px",
                 backgroundColor: "#F65F3D",
                 borderRadius: "10px",
                 padding: 2,
@@ -127,9 +122,14 @@ function Main({ chatHistory }) {
             </Box>
           </div>
           {/*Features*/}
-        </Box>
-        <Chat chatHistory={chatHistory} />
-      </Paper>
+        </div>
+        <Chat
+          chatBodyRef={chatBodyRef}
+          chatHistory={chatHistory}
+          setImageOpen={setImageOpen}
+          setChooseImage={setChooseImage}
+        />
+      </section>
     </>
   );
 }

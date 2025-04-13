@@ -1,0 +1,117 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  background: none;
+  position: absolute;
+}
+
+.camera {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  z-index: 100;
+  background: none;
+  position: absolute;
+}
+
+.camera header {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+  overflow: hidden; /* Ẩn phần thừa bên ngoài */
+  background: rgb(18, 19, 20);
+}
+
+.camera .close {
+  position: absolute;
+  cursor: pointer;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: aliceblue;
+  transition: all 0.3s ease;
+}
+
+.camera .close:hover {
+  transform: scale(1.2);
+}
+
+.camera .photo {
+  background-color: rgb(18, 19, 20);
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.camera .photo .video {
+  margin: auto;
+  min-height: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.camera .photo .captured-photo {
+  margin: auto;
+  min-height: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.camera footer {
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  justify-content: space-around;
+  background-color: rgb(18, 19, 20);
+}
+
+.camera footer .take {
+  background-color: #e63946; /* Màu đỏ */
+  border: none;
+  border-radius: 50%; /* Tạo hình tròn */
+  width: 2.6rem; /* Chiều rộng */
+  height: 50%; /* Chiều cao */
+  font-size: 24px; /* Kích thước chữ */
+  cursor: pointer; /* Hiệu ứng chuột */
+  box-shadow: 0 0 3px 10px rgba(255, 99, 71, 0.2); /* Đổ bóng */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hiệu ứng chuyển đổi */
+}
+
+.camera footer .take:hover {
+  transform: scale(0.95);
+  background-color: #d62839;
+}
+
+.camera header .icon {
+  font-size: 2rem;
+  color: aliceblue;
+  cursor: pointer;
+  transition: all 0.5 ease;
+}
+
+.camera header .icon:hover {
+    transform: scale(1.2);
+    color: #d62839;
+}
+
+
+.camera header .restart {
+  transition: all 0.5s ease;
+}
+
+.camera header .restart.activate {
+  transform: rotate(180deg);
+}
