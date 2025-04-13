@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import ChatbotIcon from "./../../assets/chatbot";
 import "./index.css";
 import ChatMessage from "./ChatMessage";
 
-function Chat({ chatHistory }) {
+function Chat({ chatBodyRef, chatHistory, setImageOpen, setChooseImage }) {
+  // console.log(chatHistory);
   return (
     <>
-      <div className="chat-body">
-        <div className="message bot-message">
-          <ChatbotIcon />
-          <p className="message-text">
-            Hey there <br /> How can I help you?
-          </p>
-        </div>
+      <div ref={chatBodyRef} className="chat-body">
         {/* Render the chat history dynamically */}
-        {chatHistory.map((chat, index) => {
-          <ChatMessage key={index} chat={chat} />;
-        })}
+        {chatHistory.map((chat, index) => (
+          <ChatMessage
+            key={index}
+            chat={chat}
+            setImageOpen={setImageOpen}
+            setChooseImage={setChooseImage}
+          />
+          // console.log(index);
+          // console.log(chat);
+        ))}
       </div>
     </>
   );

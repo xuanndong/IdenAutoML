@@ -1,196 +1,178 @@
-import Box from "@mui/material/Box";
-import React, { useEffect, useRef, useState } from "react";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import React, { useRef, useState } from "react";
 
 // import icon
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import AppsIcon from "@mui/icons-material/Apps";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import FilePresentIcon from "@mui/icons-material/FilePresent";
+import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ImageIcon from "@mui/icons-material/Image";
 
+// import JS and CSS
 import "./sidebar.css";
 
-function Sidebar({ setChatHistory }) {
-  const inputRef = useRef();
+function Sidebar({
+  setCameraOpen,
+  setPhoto,
+  setImage,
+  setImages,
+  setDone,
+  uploadImage,
+  setInitScreen,
+}) {
+  // Handle events
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    const userMessage = inputRef.current.value.trim();
-    if (!userMessage) return;
-    inputRef.current.value = "";
-
-    // Update chat history with the user's message
-    setChatHistory((history) => [
-      ...history,
-      { role: "user", text: userMessage },
-    ]);
-
-    // Adding a "Thinking..." placeholder for the bot's response
-    setTimeout(
-      () =>
-        setChatHistory((history) => [
-          ...history,
-          { role: "model", text: "Thinking..." },
-        ]),
-      600
-    );
+  // Handle open/close sidebar
+  const handleToggle = () => {
+    const sidebar = document.querySelector(".sidebar");
+    sidebar.classList.toggle("close");
   };
 
-  // close sidebar
-  const [close, setClose] = useState(true);
-  function handleClick() {
-    setClose((prev) => !prev);
-  }
+  // Handle Mode Switch
+  const handleModeSwitch = () => {
+    const body = document.querySelector("body");
+    const modeText = document.querySelector(".mode-text");
 
-  const [loading, setLoading] = React.useState(false);
-  React.useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 5000);
-    return () => clearTimeout(timeout);
-  });
+    body.classList.toggle("dark");
+
+    if (body.classList.contains("dark")) {
+      modeText.textContent = "Light Mode";
+    } else {
+      modeText.textContent = "Dark Mode";
+    }
+  };
+
+  // Handle get image
+  const imageRef = useRef();
+
+  // chuyển url về image state để gọi api
+  // gửi ảnh lên khung chat
+  const handleImageChange = (e) => {
+    e.preventDefault();
+
+    const selectedImage = e.target.files[0];
+
+    if (!selectedImage) {
+      setImage(null);
+      return;
+    }
+
+    const url = URL.createObjectURL(selectedImage);
+    setImage(url);
+    uploadImage(url);
+    setInitScreen(true);
+  };
+
+  // Handle get multi images
+  const imagesRef = useRef();
+
+  const handleImagesChange = (e) => {
+    e.preventDefault();
+
+    const selectedImages = Array.from(e.target.files);
+    if (!selectedImages || selectedImages.length === 0) {
+      setImages([]);
+      return;
+    }
+    setImages(selectedImages);
+
+    const imageUrls = selectedImages.map((image) => URL.createObjectURL(image));
+    uploadImage(imageUrls);
+    setInitScreen(true);
+  };
+
   return (
     <>
-      <Box
-        sx={{
-          height: "100vh",
-          width: !close ? "4vw" : "24vw",
-          padding: !close ? 1.5 : 2,
-          paddingRight: 0,
-          transition: "width 0.3s ease-in-out",
-        }}
-      >
-        {/* Logo */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: !close ? "center" : "flex-start",
-            gap: 4,
-            marginBottom: 9,
-            padding: 0,
-            paddingTop: 1,
-          }}
-        >
-          {close && (
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 0.3,
-              }}
-            >
-              <AppsIcon sx={{ color: "#22B143" }} fontSize="large" />
-              <Typography
-                className="logo"
-                variant="span"
-                sx={{ fontWeight: "bold", fontSize: "1.6rem" }}
-              >
-                Sagehood
-              </Typography>
-            </Box>
-          )}
-          <ExitToAppIcon
-            fontSize="large"
-            className={`icon-rotate ${close ? "active" : ""}`}
-            sx={{
-              transition: "transform 0.5s ease",
-              cursor: "pointer",
-            }}
-            onClick={handleClick}
-          />
-        </Box>
+      <nav className="sidebar">
+        <header>
+          <div className="image-text">
+            <AppsIcon
+              className="image"
+              sx={{ color: "#22B143" }}
+              fontSize="large"
+            />
 
-        {/* Buttons */}
-        <Box
-          sx={{
-            display: !close ? "flex" : undefined,
-            flexWrap: !close ? "wrap" : undefined,
-            justifyContent: !close ? "center" : undefined,
-            alignItems: !close ? "center" : undefined,
-          }}
-        >
-          <Button
-            className="btn-style701"
-            sx={{
-              minWidth: !close ? "3.9vw" : undefined,
-              gap: !close ? 0 : undefined,
-              justifyContent: !close ? "center" : undefined,
-              marginLeft: !close ? "0" : undefined,
-            }}
-            onClick={() => setLoading(true)}
-            loading={loading}
-          >
-            <FilePresentIcon fontSize="large" sx={{ color: "black" }} />
-            {close && (
-              <Typography
-                variant="span"
-                sx={{
-                  fontSize: "1.3rem",
-                  fontWeight: "500",
-                  color: "#000000",
-                  transform: "0.5s",
-                }}
-              >
-                Files
-              </Typography>
-            )}
-          </Button>
-          <Button
-            className="btn-style701"
-            sx={{
-              minWidth: !close ? "3.9vw" : undefined,
-              gap: !close ? 0 : undefined,
-              justifyContent: !close ? "center" : undefined,
-              marginLeft: !close ? "0" : undefined,
-            }}
-            onClick={() => setLoading(true)}
-            loading={loading}
-          >
-            <ImageIcon fontSize="large" sx={{ color: "black" }} />
+            <div className="text header-text">
+              <span className="name">Sagehood</span>
+            </div>
+          </div>
+          <KeyboardArrowRightIcon className="toggle" onClick={handleToggle} />
+        </header>
 
-            {close && (
-              <Typography
-                variant="span"
-                sx={{
-                  fontSize: "1.3rem",
-                  fontWeight: "500",
-                  color: "#000000",
-                }}
-              >
-                Images
-              </Typography>
-            )}
-          </Button>
-          <Button
-            className="btn-style701"
-            sx={{
-              minWidth: !close ? "3.9vw" : undefined,
-              gap: !close ? 0 : undefined,
-              justifyContent: !close ? "center" : undefined,
-              marginLeft: !close ? "0" : undefined,
-            }}
-            onClick={() => setLoading(true)}
-            loading={loading}
-          >
-            <PhotoCameraIcon fontSize="large" sx={{ color: "black" }} />
-            {close && (
-              <Typography
-                variant="span"
-                sx={{
-                  fontSize: "1.3rem",
-                  fontWeight: "500",
-                  color: "#000000",
-                }}
-              >
-                Camera
-              </Typography>
-            )}
-          </Button>
-        </Box>
-      </Box>
+        <div className="menu-bar">
+          <div className="menu">
+            <ul className="menu-links">
+              {/*========Image========*/}
+              <div>
+                <input
+                  ref={imageRef}
+                  type="file"
+                  accept="image/*"
+                  id="imageInput"
+                  onChange={handleImageChange}
+                />
+                <label htmlFor="imageInput">
+                  <li className="nav-link">
+                    <div className="in">
+                      <ImageIcon className="icon" />
+                      <span className="text nav-text">Image</span>
+                    </div>
+                  </li>
+                </label>
+              </div>
+              {/*========Images========*/}
+              <div>
+                <input
+                  ref={imagesRef}
+                  type="file"
+                  accept="image/*"
+                  id="imagesInput"
+                  multiple
+                  onChange={handleImagesChange}
+                />
+                <label htmlFor="imagesInput">
+                  <li className="nav-link">
+                    <div className="in">
+                      <PhotoLibraryIcon className="icon" />
+                      <span className="text nav-text">Images</span>
+                    </div>
+                  </li>
+                </label>
+              </div>
+              {/*========Camera========*/}
+              <div>
+                <li className="nav-link">
+                  <div
+                    className="in"
+                    onClick={() => {
+                      setCameraOpen(true);
+                      setPhoto(false);
+                      setDone(false);
+                    }}
+                  >
+                    <PhotoCameraIcon className="icon" />
+                    <span className="text nav-text">Camera</span>
+                  </div>
+                </li>
+              </div>
+            </ul>
+          </div>
+
+          <div className="bottom-content">
+            <li className="mode">
+              <div className="moon-sun">
+                <DarkModeIcon className="icon moon" />
+                <LightModeIcon className="icon sun" />
+              </div>
+              <span className="mode-text text">Dark Mode</span>
+              <div className="toggle-switch" onClick={handleModeSwitch}>
+                <span className="switch"></span>
+              </div>
+            </li>
+          </div>
+        </div>
+      </nav>
     </>
   );
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagehood</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .gradient-background {
+            height: 100vh;
+            /* Chiều cao của phần tử */
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            /* Màu gradient */
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            color: black;
+            /* Màu chữ */
+            font-size: 2rem;
+            /* Kích thước chữ */
+        }
+
+        .lost {
+            display: flex;
+            font-size: 6rem;
+            font-weight: bold;
+        }
+
+        .infor {
+            display: flex;
+            margin-top: 1rem;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .left i {
+            display: flex;
+            color: rgb(254, 249, 252);
+            margin-top: 3rem;
+            text-decoration: wavy;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gradient-background">
+        <div class="left">
+            <div class="lost">Lost Connection</div>
+            <div class="infor">RESULT NOT FOUND</div>
+            <i>Your search has ventured beyond the known universe</i>
+        </div>
+        <div class="right">
+            <img src="./src/assets/disconnect.svg" alt="Disconnect Icon" />
+        </div>
+    </div>
+</body>
+
+</html>

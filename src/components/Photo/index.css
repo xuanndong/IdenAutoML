@@ -1,0 +1,68 @@
+.image-chat {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    background: none;
+    position: absolute;
+    background-color: rgb(18, 19, 20);
+}
+
+.show-image {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    background: none;
+    position: absolute;
+}
+
+.show-image header {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Ẩn phần thừa bên ngoài */
+}
+
+.show-image footer {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Ẩn phần thừa bên ngoài */
+}
+
+
+.show-image header .close {
+    position: absolute;
+    cursor: pointer;
+    top: 0.5rem;
+    right: 0.5rem;
+    color: aliceblue;
+    transition: all 0.3s ease;
+}
+
+.show-image header .close:hover {
+    transform: scale(1.2);
+}
+
+.show-image .view {
+    height: 100vh;
+    width: 100vw;
+    border: 1px solid #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.show-image .view .show-photo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
