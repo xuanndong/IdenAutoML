@@ -71,8 +71,8 @@ function App() {
   // Handle display image
   const [chatHistory, setChatHistory] = useState([]);
 
-  const uploadImage = (url) => {
-    setChatHistory((history) => [...history, { role: "user", text: url }]);
+  const uploadImage = (img) => {
+    setChatHistory((history) => [...history, { role: "user", text: img }]);
 
     // Adding a "Thinking..." placeholder for the bot's response
     setTimeout(
@@ -111,7 +111,7 @@ function App() {
       if (!respone.ok)
         throw new Error(data.error.message || "Something went wrong");
 
-      const apiRespone = 0; // get data from server
+      const apiRespone = "api server"; // get data from server
       updateHistory(apiRespone);
     } catch (error) {
       updateHistory(error.message, true);
@@ -133,34 +133,6 @@ function App() {
   }, [cameraOpen]); // Chạy khi cameraOpen thay đổi
 
   // --------------------------- //
-
-  // // reducer for image feature
-  // const initialState = { data: null, loading: false, error: null };
-
-  // function reducer(state, action) {
-  //   switch (action.type) {
-  //     case "FETCH_INIT":
-  //       return { ...state, loading: true, error: null };
-  //     case "FETCH_SUCCESS":
-  //       return { ...state, loading: false, data: action.payload };
-  //     case "FETCH_FAILURE":
-  //       return { ...state, loading: false, error: action.payload };
-  //     default:
-  //       throw new Error(`Unknown action: ${action.type}`);
-  //   }
-  // }
-
-  // const [state, dispatch] = useReducer(reducer, initialState);
-  // const fetchData = async () => {
-  //   dispatch({ type: "FETCH_INIT" });
-  //   try {
-  //     const response = await fetch("https://api.example.com/data");
-  //     const data = await response.json();
-  //     dispatch({ type: "FETCH_SUCCESS", payload: data });
-  //   } catch (error) {
-  //     dispatch({ type: "FETCH_FAILURE", payload: error.message });
-  //   }
-  // };
 
   useEffect(() => {
     // Auto scroll whenever chat history update
