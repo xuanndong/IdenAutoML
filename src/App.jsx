@@ -6,6 +6,7 @@ import Main from "./components/Content/content";
 import Camera from "./components/Camera/camera";
 import Image from "./components/Photo/image";
 import Begin from "./components/Begin/begin";
+import Draw from "./components/Content/paint";
 
 // import css
 import "./App.css";
@@ -16,6 +17,13 @@ function App() {
   const [images, setImages] = useState([]); // state of imagea
   const [camera, setCamera] = useState(null); // state of camera
   const [initScreen, setInitScreen] = useState(false); // state of show initation screen
+
+  // handle write character
+  const [drawOpen, setDrawOpen] = useState(false);
+  const handleCloseDraw = () => {
+    setDrawOpen(false);
+  };
+
   // Handles take photo
 
   const [cameraOpen, setCameraOpen] = useState(false); // camera có active hay không
@@ -71,19 +79,22 @@ function App() {
   // Handle display image
   const [chatHistory, setChatHistory] = useState([]);
 
-  const uploadImage = (img) => {
-    setChatHistory((history) => [...history, { role: "user", text: img }]);
+  const uploadImage = (imgUrl, formData) => {
+    setChatHistory((history) => [...history, { role: "user", text: imgUrl }]);
 
     // Adding a "Thinking..." placeholder for the bot's response
     setTimeout(
       () =>
         setChatHistory((history) => [
           ...history,
-          { role: "model", text: "Thinking..." },
+          {
+            role: "model",
+            text: "Thinking...white-space: pre-line;: Giữ khoảng trắng và xuống dòng từ HTML, nhưng tự động xuống dòng khi cần.",
+          },
         ]),
       600
     );
-    // để generateRespone
+    // generateRespone(formData);
   };
 
   // Helper function to update chat history
@@ -95,23 +106,26 @@ function App() {
   };
 
   // Get API
-  const generateRespone = async (history) => {
+  const generateRespone = async (imageUrl) => {
     // Format chat history for API request
-    history = history.map(({ role, text }) => ({ role, parts: [{ text }] }));
+    // history = history.map(({ role, text }) => ({ role, parts: [{ text }] }));
 
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ contents: history }),
+      body: imageUrl,
     };
 
+    // console.log(imageUrl.has("image"));
+    // console.log(imageUrl.getAll("image"));
+    // console.log(imageUrl.has("imageCamera"));
+    // console.log(imageUrl.getAll("imageCamera"));
     try {
       const respone = await fetch(import.meta.env.VITE_API_URL, requestOptions);
       const data = await respone.json();
       if (!respone.ok)
         throw new Error(data.error.message || "Something went wrong");
 
-      const apiRespone = "api server"; // get data from server
+      const apiRespone = data.response; // get data from server
       updateHistory(apiRespone);
     } catch (error) {
       updateHistory(error.message, true);
@@ -150,7 +164,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false); // Đặt loading thành false sau 6000ms
-    }, 6000);
+    }, 3000);
 
     return () => clearTimeout(timer); // Dọn dẹp timer khi component unmount
   }, []);
@@ -170,6 +184,7 @@ function App() {
             setDone={setDone}
             uploadImage={uploadImage}
             setInitScreen={setInitScreen}
+            setDrawOpen={setDrawOpen}
           />
           <Main
             chatBodyRef={chatBodyRef}
@@ -201,6 +216,7 @@ function App() {
               setImageOpen={setImageOpen}
             />
           )}
+          {drawOpen && <Draw handleCloseDraw={handleCloseDraw} />}
         </>
       )}
     </>

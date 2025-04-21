@@ -1,0 +1,185 @@
+.drawCanvas {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    position: absolute;
+    background: #abcdfe;
+}
+
+.drawCanvas .options {
+    list-style: none;
+    margin-top: 0.5rem;
+    padding-left: 0.6rem;
+}
+
+.drawCanvas .options li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.drawCanvas .options li .character {
+    display: flex;
+}
+
+.drawCanvas .options li label {
+    padding-left: 0.7rem;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-left: 0.3rem;
+}
+
+.option:is(:hover, .active) .icon {
+    filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
+}
+
+.option :where(span, label) {
+    color: #5A6168;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.colors .options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.colors .option {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    margin-top: 3px;
+    position: relative;
+}
+
+.colors .option:nth-child(1) {
+    background-color: #fff;
+    border: 1px solid #bfbfbf;
+}
+.colors .option:nth-child(2) {
+    background-color: #000;
+    border: 1px solid #bfbfbf;
+}
+.colors .option:nth-child(3) {
+    background-color: #E02020;
+    border: 1px solid #bfbfbf;
+}
+.colors .option:nth-child(4) {
+    background-color: #6DD400;
+    border: 1px solid #bfbfbf;
+}
+.colors .option:nth-child(5) {
+    background-color: #4A98F7;
+    border: 1px solid #bfbfbf;
+}
+
+.colors .option.selected::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    height: 14px;
+    width: 14px;
+    background: inherit;
+    border-radius: inherit;
+    border: 2px solid #fff;
+    transform: translate(-50%, -50%);
+}
+
+.colors .option:first-child.selected::before {
+    border-color: #ccc;
+}
+
+.option #color-picker {
+    opacity: 0;
+    cursor: pointer;
+}
+
+#fill-color:checked ~ label {
+    color: #4A98F7;
+}
+
+.option #size-slider {
+    width: 100%;
+    height: 5px;
+    margin-top: 10px;
+}
+
+.option:is(:hover, .active) :where(span, label) {
+    color: #4A98F7;
+}
+
+.buttons {
+    margin-top: 3rem;
+}
+
+.buttons button {
+    width: 100%;
+    background: #fff;
+    border: none;
+    outline: none;
+    padding: 11px 0;
+    font-size: 0.7rem;
+    margin-bottom: 13px;
+    cursor: pointer;
+}
+
+.buttons .clear-canvas {
+    color: #6c757d;
+    border: 1px solid #6c757d;
+    transition: all 0.3s ease;
+}
+
+.clear-canvas:hover {
+    color: #fff;
+    background-color: #6c757d;
+}
+
+.buttons .send {
+    color: #fff;
+    background: #4A98F7;
+    border: 1px solid #4A98F7;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    gap: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+section {
+    height: 80%;
+    background: #fff;
+    border-radius: 7px;
+}
+
+.tools-board {
+    width: 240px;
+    padding: 0.5rem 1rem;
+}
+
+
+.drawing-board {
+    flex: 1;
+}
+
+.drawing-board canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.close-draw {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}

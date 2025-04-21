@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // import icon
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -8,6 +8,7 @@ import AppsIcon from "@mui/icons-material/Apps";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ImageIcon from "@mui/icons-material/Image";
+import BrushIcon from "@mui/icons-material/Brush";
 
 // import JS and CSS
 import "./sidebar.css";
@@ -20,6 +21,8 @@ function Sidebar({
   setDone,
   uploadImage,
   setInitScreen,
+  setDrawOpen,
+  initCanvas,
 }) {
   // Handle events
 
@@ -60,8 +63,14 @@ function Sidebar({
 
     const url = URL.createObjectURL(selectedImage);
     setImage(url);
-    uploadImage(url);
+
+    const formData = new FormData();
+    formData.append("image", selectedImage);
+    uploadImage(url, formData);
     setInitScreen(true);
+
+    // reset input
+    e.target.value = null;
   };
 
   // Handle get multi images
@@ -75,11 +84,27 @@ function Sidebar({
       setImages([]);
       return;
     }
+
     setImages(selectedImages);
 
     const imageUrls = selectedImages.map((image) => URL.createObjectURL(image));
-    uploadImage(imageUrls);
+
+    const formData = new FormData();
+    selectedImages.map((image) => {
+      formData.append("images", image);
+    });
+
+    uploadImage(imageUrls, formData);
     setInitScreen(true);
+
+    // reset input
+    e.target.value = null;
+  };
+
+  // state manger
+  const [hover, setHover] = useState(false);
+  const handleCloseMenu = () => {
+    setHover(false);
   };
 
   return (
@@ -91,6 +116,7 @@ function Sidebar({
               className="image"
               sx={{ color: "#22B143" }}
               fontSize="large"
+              onClick={() => setHover(true)}
             />
 
             <div className="text header-text">
@@ -101,8 +127,22 @@ function Sidebar({
         </header>
 
         <div className="menu-bar">
-          <div className="menu">
+          <div className={`menu ${hover ? "active" : ""}`}>
             <ul className="menu-links">
+              {/*========Draw========*/}
+              <div>
+                <li className="nav-link">
+                  <div
+                    className="in"
+                    onClick={() => {
+                      setDrawOpen(true);
+                    }}
+                  >
+                    <BrushIcon className="icon" />
+                    <span className="text nav-text">Draw</span>
+                  </div>
+                </li>
+              </div>
               {/*========Image========*/}
               <div>
                 <input
@@ -111,6 +151,7 @@ function Sidebar({
                   accept="image/*"
                   id="imageInput"
                   onChange={handleImageChange}
+                  onClick={handleCloseMenu}
                 />
                 <label htmlFor="imageInput">
                   <li className="nav-link">
@@ -130,6 +171,7 @@ function Sidebar({
                   id="imagesInput"
                   multiple
                   onChange={handleImagesChange}
+                  onClick={handleCloseMenu}
                 />
                 <label htmlFor="imagesInput">
                   <li className="nav-link">
@@ -144,11 +186,12 @@ function Sidebar({
               <div>
                 <li className="nav-link">
                   <div
-                    className="in"
+                    className="in last"
                     onClick={() => {
                       setCameraOpen(true);
                       setPhoto(false);
                       setDone(false);
+                      handleCloseMenu();
                     }}
                   >
                     <PhotoCameraIcon className="icon" />

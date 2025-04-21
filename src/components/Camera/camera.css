@@ -49,6 +49,9 @@
   background-color: rgb(18, 19, 20);
   height: 100%;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid black;
 }
 
@@ -58,6 +61,38 @@
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 400px) {
+ .camera .photo .video {
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0;
+ } 
+ .camera .photo .captured-photo {
+  width: 100%;
+  min-height: auto !important;
+  margin-top: 3rem !important;
+  border-radius: 0px !important;
+ }
+ .camera header {
+  padding-left: 1rem;
+  height: 6rem;
+ }
+ .camera .take {
+  margin-bottom: 1rem;
+ }
+ .camera footer {
+  height: 18rem !important;
+  position: relative !important;
+ }
+ .camera footer .take {
+  width: 2.6rem !important;
+  height: 2.6rem !important;
+  position: absolute !important;
+  top: 1.6rem;
+ }
 }
 
 .camera .photo .captured-photo {
@@ -94,7 +129,7 @@
   transform: scale(0.95);
   background-color: #d62839;
 }
-
+ 
 .camera header .icon {
   font-size: 2rem;
   color: aliceblue;

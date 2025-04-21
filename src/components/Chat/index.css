@@ -13,11 +13,45 @@
   display: none; /* Ẩn thanh cuộn trên trình duyệt WebKit */
 }
 
+@media screen and (max-width: 400px) {
+  .chat-body {
+    padding: 25px 0px;
+    width: 100%;
+    background: #b398fe;
+    height: 100vh !important;
+    padding-bottom: 4rem;
+  }
+
+  .chat-body .bot-message {
+    margin-left: 0.9rem !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  .chat-body .user-message {
+    margin-right: 0.9rem !important;
+  }
+
+  .chat-body .message p {
+    padding: 9px 12px !important;
+    max-width: 69% !important;
+    font-size: 1rem !important;
+  }
+   
+  .chat-body .bot-message svg {
+    height: 40px !important;
+    width: 40px !important;
+  }
+
+}
 
 .chat-body .message {
   display: flex;
-  gap: 11px;
+  gap: 11px; 
   align-items: center;
+}
+
+.message-text {
+  font-size: 1rem !important;
 }
 
 .chat-body .bot-message svg {
@@ -42,10 +76,18 @@
 
 .chat-body .message .message-text {
   padding: 12px 12px;
-  max-width: 90%;
+  max-width: 100%;
   word-wrap: break-word;
   white-space: pre-line;
   font-size: 1.2rem;
+}
+
+.chat-body .message.bot-message {
+  max-width: 90% !important;
+}
+
+.chat-body .message .message-text.group {
+  padding: 8px;
 }
 
 .chat-body .bot-message .message-text {
@@ -63,4 +105,10 @@
   background: #6d4fc2;
   border-radius: 13px 13px 3px 13px;
   font-size: 1.2rem;
+}
+
+
+.chat-body .group img{
+  height: 80px !important;
+  width: 80px !important;
 }

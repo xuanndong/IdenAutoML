@@ -48,6 +48,7 @@ function Main({
                 borderRadius: "10px",
                 padding: 2,
               }}
+              className="box"
             >
               <Box
                 sx={{
@@ -59,11 +60,12 @@ function Main({
                   justifyContent: "center",
                   alignItems: "center",
                 }}
+                className="subbox"
               >
                 <ArOnIcon />
               </Box>
-              <Typography variant="h6" sx={{ marginTop: 6 }}>
-                Feature 1
+              <Typography variant="h6" className="text" sx={{ marginTop: 4 }}>
+                Đơn ảnh
               </Typography>
             </Box>
             <Box
@@ -75,6 +77,7 @@ function Main({
                 borderRadius: "10px",
                 padding: 2,
               }}
+              className="box"
             >
               <Box
                 sx={{
@@ -86,11 +89,12 @@ function Main({
                   justifyContent: "center",
                   alignItems: "center",
                 }}
+                className="subbox"
               >
                 <ArStickIcon />
               </Box>
-              <Typography variant="h6" sx={{ marginTop: 6 }}>
-                Feature 2
+              <Typography variant="h6" className="text" sx={{ marginTop: 4 }}>
+                Đa ảnh
               </Typography>
             </Box>
             <Box
@@ -102,6 +106,7 @@ function Main({
                 borderRadius: "10px",
                 padding: 2,
               }}
+              className="box"
             >
               <Box
                 sx={{
@@ -113,11 +118,12 @@ function Main({
                   justifyContent: "center",
                   alignItems: "center",
                 }}
+                className="subbox"
               >
                 <EyeTrackIcon />
               </Box>
-              <Typography variant="h6" sx={{ marginTop: 6 }}>
-                Feature 3
+              <Typography variant="h6" className="text" sx={{ marginTop: 4 }}>
+                Camera
               </Typography>
             </Box>
           </div>

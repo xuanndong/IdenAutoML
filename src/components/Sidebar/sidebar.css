@@ -11,7 +11,6 @@
   background: var(--sidebar-color);
   transition: var(--tran-05);
   z-index: 100;
-
 }
 
 body.dark .sidebar {
@@ -19,7 +18,7 @@ body.dark .sidebar {
 }
 
 .sidebar.close {
-  width: 88px; /*78*/
+  width: 88px;
 }
 
 /*Resuable CSS*/
@@ -39,8 +38,6 @@ body.dark .sidebar .text {
 body.dark .sidebar .icon {
   color: rgb(253, 253, 253);
 }
-
-
 
 .sidebar .mode-text.text {
   font-size: 16px;
@@ -95,7 +92,7 @@ body.dark .image {
 
 .sidebar header {
   position: relative;
-}
+} 
 
 .sidebar .image-text img {
   width: 40px;
@@ -159,24 +156,6 @@ body.dark .sidebar header .toggle {
 .sidebar .menu {
   margin-top: 35px;
 }
-
-/* .sidebar .search-box {
-  background: var(--primary-color-light);
-  border-radius: 6px;
-  transition: var(--tran-05);
-}
-
-.search-box input {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 500;
-  background: var(--primary-color-light);
-  transition: var(--tran-05);
-} */
 
 .sidebar li .in {
   height: 100%;
@@ -246,6 +225,86 @@ body.dark .menu-bar .mode .icon.sun {
 body.dark .menu-bar .mode .icon.moon {
   opacity: 0;
   color: #0c0c0e;
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar {
+    display: flex;
+    min-height: 20px;
+    padding: 0;
+    margin-top: 6px;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    transition: var(--tran-05);
+  }
+  .sidebar .toggle {
+    display: none !important;
+  }
+  .sidebar .menu{
+    display: none !important;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar .image {
+    font-size: 1.6rem;
+    margin: 0;
+    padding: 0;
+    color: #f84c0e;
+  }
+  .sidebar .name {
+    font-size: 1rem !important;
+  }
+  .sidebar .bottom-content {
+    display: none;
+    padding: 0;
+    margin: 0;
+    position: unset !important;
+    background: none !important;
+    position: unset !important;
+  }
+  .sidebar .menu-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0;
+  }
+
+  /* dữ liệu nguyên thuỷ, bander */
+
+  .menu-links .nav-link {
+    margin: 0;
+  }
+ 
+  .menu-links .in {
+    width: 9.6rem !important;
+    border-bottom: 1px solid black;
+    border-radius: 0px !important;
+    padding: 0;
+    margin: auto;
+  }
+
+  .menu-links .in.last {
+    border-bottom: unset;
+  }
+
+  .menu-links .in .text {
+    font-size: large;
+  }
+
+  .sidebar .menu.active {
+    display: block !important;
+    position: absolute;
+    left: 1.3rem;
+    top: 1.8rem;
+    width: 9.6rem;
+    z-index: 100;
+    border-radius: 12px;
+    border-top-left-radius: 0;
+    background: #e9fdf4;
+  }
 }
 
 .menu-bar .mode .toggle-switch {

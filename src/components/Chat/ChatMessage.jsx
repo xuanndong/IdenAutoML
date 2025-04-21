@@ -18,8 +18,11 @@ const ChatMessage = ({ chat, setImageOpen, setChooseImage }) => {
     if (Array.isArray(content)) {
       return (
         <div
-          style={{ display: "flex", alignItems: "center" }}
-          className="message-text"
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+          className="message-text group"
         >
           {content.slice(0, 3).map((url, index) =>
             isImageUrl(url) ? (
@@ -61,6 +64,7 @@ const ChatMessage = ({ chat, setImageOpen, setChooseImage }) => {
             objectFit: "cover",
             margin: "3px",
             borderRadius: "12px",
+            borderEndEndRadius: "0px",
             display: "flex",
             alignItems: "center",
             cursor: "pointer",
