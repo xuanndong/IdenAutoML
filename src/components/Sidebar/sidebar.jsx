@@ -22,7 +22,9 @@ function Sidebar({
   uploadImage,
   setInitScreen,
   setDrawOpen,
-  initCanvas,
+  handleCloseMenu,
+  hover,
+  setHover,
 }) {
   // Handle events
 
@@ -99,12 +101,6 @@ function Sidebar({
 
     // reset input
     e.target.value = null;
-  };
-
-  // state manger
-  const [hover, setHover] = useState(false);
-  const handleCloseMenu = () => {
-    setHover(false);
   };
 
   return (

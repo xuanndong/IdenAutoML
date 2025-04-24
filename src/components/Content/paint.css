@@ -29,8 +29,8 @@
 }
 
 .drawCanvas canvas {
-    height: 700px;
-    width: 1002px;
+    height: 600px;
+    width: 990px;
     border: 1px solid black;
 }
 

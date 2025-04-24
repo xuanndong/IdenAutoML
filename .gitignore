@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+src/Content/draw_ex.css
+src/Content/draw_ex.jsx

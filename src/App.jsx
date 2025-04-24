@@ -89,7 +89,7 @@ function App() {
           ...history,
           {
             role: "model",
-            text: "Thinking...white-space: pre-line;: Giữ khoảng trắng và xuống dòng từ HTML, nhưng tự động xuống dòng khi cần.",
+            text: `Thinking...`,
           },
         ]),
       600
@@ -105,6 +105,14 @@ function App() {
     ]);
   };
 
+  // state close menu in screen (witdth: 400px)
+  const [hover, setHover] = useState(false);
+  const handleCloseMenu = () => {
+    if (hover) {
+      setHover(false);
+    }
+  };
+
   // Get API
   const generateRespone = async (imageUrl) => {
     // Format chat history for API request
@@ -115,10 +123,6 @@ function App() {
       body: imageUrl,
     };
 
-    // console.log(imageUrl.has("image"));
-    // console.log(imageUrl.getAll("image"));
-    // console.log(imageUrl.has("imageCamera"));
-    // console.log(imageUrl.getAll("imageCamera"));
     try {
       const respone = await fetch(import.meta.env.VITE_API_URL, requestOptions);
       const data = await respone.json();
@@ -185,6 +189,9 @@ function App() {
             uploadImage={uploadImage}
             setInitScreen={setInitScreen}
             setDrawOpen={setDrawOpen}
+            handleCloseMenu={handleCloseMenu}
+            hover={hover}
+            setHover={setHover}
           />
           <Main
             chatBodyRef={chatBodyRef}
@@ -192,6 +199,7 @@ function App() {
             setImageOpen={setImageOpen}
             setChooseImage={setChooseImage}
             initScreen={initScreen}
+            handleCloseMenu={handleCloseMenu}
           />
           {cameraOpen && (
             <Camera
@@ -216,7 +224,12 @@ function App() {
               setImageOpen={setImageOpen}
             />
           )}
-          {drawOpen && <Draw handleCloseDraw={handleCloseDraw} />}
+          {drawOpen && (
+            <Draw
+              handleCloseDraw={handleCloseDraw}
+              handleCloseMenu={handleCloseMenu}
+            />
+          )}
         </>
       )}
     </>

@@ -19,10 +19,11 @@ function Main({
   setImageOpen,
   setChooseImage,
   initScreen,
+  handleCloseMenu,
 }) {
   return (
     <>
-      <section className="home">
+      <section className="home" onClick={handleCloseMenu}>
         <div className="main" style={{ display: initScreen ? "none" : "flex" }}>
           <p className="cursor typewriter-animation">Have you a good day! 😊</p>
           <p className="text cursor typewriter-animation">

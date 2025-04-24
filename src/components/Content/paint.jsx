@@ -3,7 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import * as fabric from "fabric";
 import "./paint.css";
 
-function paint({ handleCloseDraw }) {
+function paint({ handleCloseDraw, handleCloseMenu }) {
   const canvasRef = useRef(null);
   const drawRef = useRef(null);
   const [canvas, setCanvas] = useState(null);
@@ -94,7 +94,9 @@ function paint({ handleCloseDraw }) {
     <div ref={drawRef} className="drawCanvas">
       <CloseIcon
         className="close-draw"
-        onClick={handleCloseDraw}
+        onClick={() => {
+          handleCloseMenu(), handleCloseDraw();
+        }}
         fontSize="medium"
       />
       <div className="container">

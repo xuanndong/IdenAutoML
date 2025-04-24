@@ -26,12 +26,14 @@ function camera({
   // Handle change camera (facing mode)
   const changeRef = useRef(null);
 
+  let stateCameraType = "";
+
   const changeCamera = () => {
     const isActive = changeRef.current?.classList.toggle("activate");
 
     // Chọn camera dựa trên trạng thái 'isActive'
     const cameraType = isActive ? "user" : "environment";
-
+    stateCameraType = cameraType;
     // Bắt đầu camera với loại đã chọn
     stopCamera();
     startCamera(cameraType);
@@ -71,7 +73,7 @@ function camera({
             className="close"
             onClick={() => {
               if (photo) {
-                startCamera("environment");
+                startCamera(stateCameraType);
                 setPhoto(false);
               } else {
                 handleCloseCamera();
