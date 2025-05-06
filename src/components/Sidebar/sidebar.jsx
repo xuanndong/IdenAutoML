@@ -184,7 +184,7 @@ function Sidebar({
               <div>
                 <li className="nav-link">
                   <div
-                    className="in last"
+                    className="in"
                     onClick={() => {
                       setCameraOpen(true);
                       setPhoto(false);
@@ -201,7 +201,7 @@ function Sidebar({
               <div>
                 <li className="nav-link">
                   <div
-                    className="in"
+                    className="in last"
                     onClick={() => {
                       setScoringOpen(true);
                     }}
