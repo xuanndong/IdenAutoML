@@ -7,6 +7,7 @@ import Camera from "./components/Camera/camera";
 import Image from "./components/Photo/image";
 import Begin from "./components/Begin/begin";
 import Draw from "./components/Content/paint";
+import Scoring from "./components/Exam Marking/scoring";
 
 // import css
 import "./App.css";
@@ -22,6 +23,12 @@ function App() {
   const [drawOpen, setDrawOpen] = useState(false);
   const handleCloseDraw = () => {
     setDrawOpen(false);
+  };
+
+  // handle exam marking
+  const [scoringOpen, setScoringOpen] = useState(false);
+  const handleCloseScoring = () => {
+    setScoringOpen(false);
   };
 
   // Handles take photo
@@ -189,6 +196,7 @@ function App() {
             uploadImage={uploadImage}
             setInitScreen={setInitScreen}
             setDrawOpen={setDrawOpen}
+            setScoringOpen={setScoringOpen}
             handleCloseMenu={handleCloseMenu}
             hover={hover}
             setHover={setHover}
@@ -227,6 +235,12 @@ function App() {
           {drawOpen && (
             <Draw
               handleCloseDraw={handleCloseDraw}
+              handleCloseMenu={handleCloseMenu}
+            />
+          )}
+          {scoringOpen && (
+            <Scoring
+              handleCloseScoring={handleCloseScoring}
               handleCloseMenu={handleCloseMenu}
             />
           )}

@@ -72,3 +72,18 @@
         height: 40rem !important;
     }
 }
+
+@media screen and (min-width: 401px) and (max-width: 850px) {
+    .show-image .view {
+        height: 100% !important;
+    }
+
+    .show-image .view .show-photo {
+        margin: auto !important;
+        height: 100% !important;
+        max-width: 90vw !important;
+        max-height: 80vh !important;
+        object-fit: fill !important;
+    }
+    
+}

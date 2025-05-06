@@ -9,6 +9,7 @@ import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ImageIcon from "@mui/icons-material/Image";
 import BrushIcon from "@mui/icons-material/Brush";
+import FormatShapesIcon from "@mui/icons-material/FormatShapes";
 
 // import JS and CSS
 import "./sidebar.css";
@@ -22,6 +23,7 @@ function Sidebar({
   uploadImage,
   setInitScreen,
   setDrawOpen,
+  setScoringOpen,
   handleCloseMenu,
   hover,
   setHover,
@@ -192,6 +194,20 @@ function Sidebar({
                   >
                     <PhotoCameraIcon className="icon" />
                     <span className="text nav-text">Camera</span>
+                  </div>
+                </li>
+              </div>
+              {/*========Exam marking========*/}
+              <div>
+                <li className="nav-link">
+                  <div
+                    className="in"
+                    onClick={() => {
+                      setScoringOpen(true);
+                    }}
+                  >
+                    <FormatShapesIcon className="icon" />
+                    <span className="text nav-text">Scoring</span>
                   </div>
                 </li>
               </div>

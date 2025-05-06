@@ -307,6 +307,86 @@ body.dark .menu-bar .mode .icon.moon {
   }
 }
 
+@media screen and (min-width: 401px) and (max-width: 850px) {
+  .sidebar {
+    display: flex;
+    min-height: 20px;
+    margin-top: 0.4rem !important;
+    padding: 0;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    transition: var(--tran-05);
+  }
+  .sidebar .toggle {
+    display: none !important;
+  }
+  .sidebar .menu{
+    display: none !important;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar .image {
+    font-size: 1.6rem;
+    margin: 0;
+    padding: 0;
+    color: #f84c0e;
+  }
+  .sidebar .name {
+    font-size: 0.8rem !important;
+  }
+  .sidebar .bottom-content {
+    display: none;
+    padding: 0;
+    margin: 0;
+    position: unset !important;
+    background: none !important;
+    position: unset !important;
+  }
+  .sidebar .menu-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0;
+  }
+
+  /* dữ liệu nguyên thuỷ, bander */
+
+  .menu-links .nav-link {
+    margin: 0;
+  }
+ 
+  .menu-links .in {
+    width: 8rem !important;
+    border-bottom: 1px solid black;
+    border-radius: 0px !important;
+    padding: 0;
+    margin: auto;
+  }
+
+  .menu-links .in.last {
+    border-bottom: unset;
+  }
+
+  .menu-links .in .text {
+    font-size: 0.8rem;
+  }
+
+  .sidebar .menu.active {
+    display: block !important;
+    position: absolute;
+    left: 1rem;
+    top: 2rem;
+    width: 8rem;
+    z-index: 100;
+    border-radius: 12px;
+    border-top-left-radius: 0;
+    background: #e9fdf4;
+  }
+}
+
 .menu-bar .mode .toggle-switch {
   position: absolute;
   right: 0;
