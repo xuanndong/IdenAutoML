@@ -101,7 +101,8 @@ function App() {
         ]),
       600
     );
-    // generateRespone(formData);
+    generateRespone(formData);
+
   };
 
   // Helper function to update chat history
@@ -121,17 +122,17 @@ function App() {
   };
 
   // Get API
-  const generateRespone = async (imageUrl) => {
+  const generateRespone = async (formdata) => {
     // Format chat history for API request
     // history = history.map(({ role, text }) => ({ role, parts: [{ text }] }));
 
     const requestOptions = {
       method: "POST",
-      body: imageUrl,
+      body: formdata,
     };
 
     try {
-      const respone = await fetch(import.meta.env.VITE_API_URL, requestOptions);
+      const respone = await fetch(import.meta.env.VITE_API_URL+`/get_response`, requestOptions);
       const data = await respone.json();
       if (!respone.ok)
         throw new Error(data.error.message || "Something went wrong");
