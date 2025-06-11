@@ -119,7 +119,7 @@ function paint({ handleCloseDraw, handleCloseMenu }) {
 
       <div className="corner">
         <canvas ref={canvasRef} style={{ display: processedImage ? "none" : "flex" }}></canvas>
-        {processedImage && (
+        {!processedImage && (
           <div className="result-container">
             {/* <div >{processedImage}</div> */}
             <img src={processedImage} alt="Processed result" />
