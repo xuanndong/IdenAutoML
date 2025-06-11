@@ -56,12 +56,12 @@
     height: 100%;
 }
 
-.result-container img {
+/* .result-container img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Giữ tỉ lệ ảnh */
-    background: white;   /* Nền trắng nếu ảnh nhỏ hơn khung */
-}
+    object-fit: contain; 
+    background: white;  
+} */
 
 .container button {
     height: 2rem;
