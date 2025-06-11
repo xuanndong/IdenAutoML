@@ -20,6 +20,7 @@ function Main({
   setChooseImage,
   initScreen,
   handleCloseMenu,
+  downloadFile
 }) {
   return (
     <>
@@ -135,6 +136,7 @@ function Main({
           chatHistory={chatHistory}
           setImageOpen={setImageOpen}
           setChooseImage={setChooseImage}
+          downloadFile={downloadFile}
         />
       </section>
     </>

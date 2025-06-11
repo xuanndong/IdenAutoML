@@ -85,6 +85,7 @@ function App() {
 
   // Handle display image
   const [chatHistory, setChatHistory] = useState([]);
+  const [downloadFile, setDownloadFile] = useState(false)
 
   const uploadImage = (imgUrl, formData) => {
     setChatHistory((history) => [...history, { role: "user", text: imgUrl }]);
@@ -96,19 +97,18 @@ function App() {
           ...history,
           {
             role: "model",
-            text: `Tranning...`,
+            text: `Training...`,
           },
         ]),
       600
     );
     generateRespone(formData);
-
   };
 
   // Helper function to update chat history
-  const updateHistory = (text, imageResponse,  isError = false) => {
+  const updateHistory = (text, imageResponse, isError = false) => {
     setChatHistory((prev) => [
-      ...prev.filter((msg) => msg.text !== "Thinking..."),
+      ...prev.filter((msg) => msg.text !== "Training..."),
       { role: "model", text, isError },
     ]);
   };
@@ -125,21 +125,23 @@ function App() {
   const generateRespone = async (formdata) => {
     // Format chat history for API request
     // history = history.map(({ role, text }) => ({ role, parts: [{ text }] }));
-
+    setDownloadFile(false)
+    
     const requestOptions = {
       method: "POST",
       body: formdata,
     };
 
     try {
-      const respone = await fetch(import.meta.env.VITE_API_URL+`/get_response`, requestOptions);
+      const respone = await fetch(import.meta.env.VITE_API_URL + `/get_response`, requestOptions);
       const data = await respone.json();
       if (!respone.ok)
         throw new Error(data.error.message || "Something went wrong");
 
       const apiRespone = data.response; // get data from server
-      const imageResponse = `data:image/png;base64,${data.image}`
+      const imageResponse = `data:image/png;base64,${data.image}`;
       updateHistory(apiRespone, imageResponse);
+      setDownloadFile(true);
     } catch (error) {
       updateHistory(error.message, true);
     }
@@ -210,6 +212,7 @@ function App() {
             setChooseImage={setChooseImage}
             initScreen={initScreen}
             handleCloseMenu={handleCloseMenu}
+            downloadFile={downloadFile}
           />
           {cameraOpen && (
             <Camera

@@ -1,7 +1,7 @@
 import React from "react";
 import ChatbotIcon from "./../../assets/chatbot";
 
-const ChatMessage = ({ chat, setImageOpen, setChooseImage }) => {
+const ChatMessage = ({ chat, setImageOpen, setChooseImage, downloadFile }) => {
   const isImageUrl = (url) => {
     return (
       url &&
@@ -80,9 +80,9 @@ const ChatMessage = ({ chat, setImageOpen, setChooseImage }) => {
       return (
         <>
           <p className="message-text">{content}</p>
-          {content && content.trim() !== "" && (
-            <button onClick={downloadContent}>
-              <DownloadIcon />
+          {content && downloadFile && content.trim() !== "" && (
+            <button onClick={downloadContent} style={{ backgroundColor: "transparent", border: "none" }}>
+              <img className="downloadIcon" src="src/assets/download.png" alt="" />
             </button>
           )}
         </>
@@ -101,7 +101,7 @@ const ChatMessage = ({ chat, setImageOpen, setChooseImage }) => {
     element.click();
     document.body.removeChild(element);
   };
-
+ 
   return (
     <div
       className={`message ${chat.role === "model" ? "bot" : "user"}-message`}
@@ -113,11 +113,3 @@ const ChatMessage = ({ chat, setImageOpen, setChooseImage }) => {
 };
 
 export default ChatMessage;
-
-const DownloadIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-    <polyline points="7 10 12 15 17 10"></polyline>
-    <line x1="12" y1="15" x2="12" y2="3"></line>
-  </svg>
-);

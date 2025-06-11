@@ -3,7 +3,7 @@ import ChatbotIcon from "./../../assets/chatbot";
 import "./index.css";
 import ChatMessage from "./ChatMessage";
 
-function Chat({ chatBodyRef, chatHistory, setImageOpen, setChooseImage }) {
+function Chat({ chatBodyRef, chatHistory, setImageOpen, setChooseImage, downloadFile }) {
   // console.log(chatHistory);
   return (
     <>
@@ -15,6 +15,7 @@ function Chat({ chatBodyRef, chatHistory, setImageOpen, setChooseImage }) {
             chat={chat}
             setImageOpen={setImageOpen}
             setChooseImage={setChooseImage}
+            downloadFile={downloadFile}
           />
         ))}
       </div>
@@ -22,4 +23,4 @@ function Chat({ chatBodyRef, chatHistory, setImageOpen, setChooseImage }) {
   );
 }
 
-export default Chat;
+export default Chat; 
