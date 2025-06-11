@@ -10,7 +10,7 @@ function paint({ handleCloseDraw, handleCloseMenu }) {
   const [processedImage, setProcessedImage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  useEffect(() => {
+  const initCanvas = () => {
     const fabricCanvas = new fabric.Canvas(canvasRef.current, {
       width: canvasRef.current.clientWidth,
       height: canvasRef.current.clientHeight,
@@ -26,6 +26,11 @@ function paint({ handleCloseDraw, handleCloseMenu }) {
       fabricCanvas.freeDrawingBrush.width = 4;
     }
     fabricCanvas.renderAll();
+    return fabricCanvas;
+  };
+
+  useEffect(() => {
+    const fabricCanvas = initCanvas();
     setCanvas(fabricCanvas);
 
     return () => {
@@ -58,7 +63,7 @@ function paint({ handleCloseDraw, handleCloseMenu }) {
     formData.append("image", blob, "drawing.png");
 
     try {
-      const response = await fetch(import.meta.env.VITE_API_URL+`/get_response_2`, {
+      const response = await fetch(import.meta.env.VITE_API_URL + `/get_response_2`, {
         method: "POST",
         body: formData,
       });
@@ -71,7 +76,7 @@ function paint({ handleCloseDraw, handleCloseMenu }) {
       // Giả sử server trả về base64 image trong trường 'processed_image'
       if (result.response) {
         // setProcessedImage(result.response);
-        setProcessedImage( `data:image/png;base64,${result.image}`)
+        setProcessedImage(`data:image/png;base64,${result.image}`)
       }
     } catch (error) {
       console.error("Error:", error);
@@ -85,6 +90,7 @@ function paint({ handleCloseDraw, handleCloseMenu }) {
     if (canvas) {
       canvas.clear();
       canvas.backgroundColor = "#fff";
+      canvas.isDrawingMode = true
       canvas.renderAll();
       setProcessedImage(null); // Reset processed image khi clear canvas
     }
@@ -92,6 +98,14 @@ function paint({ handleCloseDraw, handleCloseMenu }) {
 
   const handleBackToCanvas = () => {
     setProcessedImage(null); // Quay lại canvas để chỉnh sửa
+    if (!canvas) {
+      const fabricCanvas = initCanvas();
+      setCanvas(fabricCanvas);
+    }else {
+      // Reset che do ve
+      canvas.isDrawingMode = true
+      canvas.renderAll()
+    }
   };
 
   return (
