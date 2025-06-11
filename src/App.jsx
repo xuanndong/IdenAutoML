@@ -96,7 +96,7 @@ function App() {
           ...history,
           {
             role: "model",
-            text: `Thinking...`,
+            text: `Tranning...`,
           },
         ]),
       600
@@ -106,7 +106,7 @@ function App() {
   };
 
   // Helper function to update chat history
-  const updateHistory = (text, isError = false) => {
+  const updateHistory = (text, imageResponse,  isError = false) => {
     setChatHistory((prev) => [
       ...prev.filter((msg) => msg.text !== "Thinking..."),
       { role: "model", text, isError },
@@ -138,7 +138,8 @@ function App() {
         throw new Error(data.error.message || "Something went wrong");
 
       const apiRespone = data.response; // get data from server
-      updateHistory(apiRespone);
+      const imageResponse = `data:image/png;base64,${data.image}`
+      updateHistory(apiRespone, imageResponse);
     } catch (error) {
       updateHistory(error.message, true);
     }
@@ -252,3 +253,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+

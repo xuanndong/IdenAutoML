@@ -18,6 +18,7 @@
     "@mui/material": "^6.4.8",
     "fabric": "^6.6.4",
     "fabricjs-react": "^2.1.0",
+    "idenml": "file:",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

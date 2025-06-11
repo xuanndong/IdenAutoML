@@ -16,8 +16,6 @@ function Chat({ chatBodyRef, chatHistory, setImageOpen, setChooseImage }) {
             setImageOpen={setImageOpen}
             setChooseImage={setChooseImage}
           />
-          // console.log(index);
-          // console.log(chat);
         ))}
       </div>
     </>
