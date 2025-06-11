@@ -137,7 +137,7 @@ function Sidebar({
                     }}
                   >
                     <BrushIcon className="icon" />
-                    <span className="text nav-text">Draw</span>
+                    <span className="text nav-text">Writing</span>
                   </div>
                 </li>
               </div>

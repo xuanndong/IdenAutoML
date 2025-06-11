@@ -15,7 +15,7 @@ function scoring({ handleCloseScoring, handleCloseMenu }) {
   // gửi ảnh lên khung chat
   const handleImportChange = (e) => {
     e.preventDefault();
-
+ 
     const selectedImport = e.target.files[0];
 
     if (!selectedImport) {

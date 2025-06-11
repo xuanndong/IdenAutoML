@@ -67,7 +67,7 @@ function Main({
                 <ArOnIcon />
               </Box>
               <Typography variant="h6" className="text" sx={{ marginTop: 4 }}>
-                Đơn ảnh
+                Image
               </Typography>
             </Box>
             <Box
@@ -96,7 +96,7 @@ function Main({
                 <ArStickIcon />
               </Box>
               <Typography variant="h6" className="text" sx={{ marginTop: 4 }}>
-                Đa ảnh
+                Writing
               </Typography>
             </Box>
             <Box
