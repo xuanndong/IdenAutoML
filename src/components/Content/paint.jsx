@@ -51,23 +51,27 @@ function paint({ handleCloseDraw, handleCloseMenu }) {
 
     setIsProcessing(true);
     const dataURL = canvas.toDataURL("image/png");
+    document.querySelector(".canvas-container").style.display = "none";
     const blob = dataURLToBlob(dataURL);
 
     const formData = new FormData();
     formData.append("image", blob, "drawing.png");
 
     try {
-      const response = await fetch("/api/process-image", {
+      const response = await fetch(import.meta.env.VITE_API_URL+`/get_response_2`, {
         method: "POST",
         body: formData,
       });
 
       const result = await response.json();
-      console.log("Processing result:", result);
+      console.log("Processing result:", result.response);
+      console.log("Processing result:", result.image);
+
 
       // Giả sử server trả về base64 image trong trường 'processed_image'
-      if (result.processed_image) {
-        setProcessedImage(result.processed_image);
+      if (result.response) {
+        // setProcessedImage(result.response);
+        setProcessedImage( `data:image/png;base64,${result.image}`)
       }
     } catch (error) {
       console.error("Error:", error);
@@ -116,23 +120,15 @@ function paint({ handleCloseDraw, handleCloseMenu }) {
         )}
       </div>
 
-      {processedImage ? (
-        <div className="result-container">
-          <img
-            src={processedImage}
-            alt="Processed result"
-            style={{
-              maxWidth: "100%",
-              maxHeight: "500px",
-              border: "1px solid #ccc",
-              margin: "0 auto",
-              display: "block",
-            }}
-          />
-        </div>
-      ) : (
-        <canvas ref={canvasRef}></canvas>
-      )}
+      <div className="corner">
+        <canvas ref={canvasRef} style={{ display: processedImage ? "none" : "block" }}></canvas>
+        {processedImage && (
+          <div className="result-container">
+            {/* <div >{processedImage}</div> */}
+            <img src={processedImage} alt="" />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -60,7 +60,7 @@ function camera({
     const blob = converttoBlob(camera);
 
     const formData = new FormData();
-    formData.append("imageCamera", blob, "canvas.jpg");
+    formData.append("image", blob, "canvas.jpg");
 
     uploadImage(camera, formData);
   };

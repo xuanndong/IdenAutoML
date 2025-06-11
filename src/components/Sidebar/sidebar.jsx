@@ -102,7 +102,7 @@ function Sidebar({
     setInitScreen(true);
 
     // reset input
-    e.target.value = null;
+    e.target.value = null; 
   };
 
   return (

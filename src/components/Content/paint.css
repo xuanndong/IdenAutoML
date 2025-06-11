@@ -21,6 +21,16 @@
     font-size: 20px;
 }
 
+.corner {
+    width: 988px;
+    height: 598px;
+    border: 1px solid black;
+}
+
+/* .canvas-container {
+    display: none;
+} */
+
 .close-draw {
     position: absolute;
     top: 0.5rem;
@@ -53,6 +63,12 @@
         flex-direction: column;
     }
 
+    .corner {
+        width: 349px;
+        height: 656px;
+        border: 1px solid black;
+    }
+
     .container {
         flex-direction: row !important;
         margin-top: 3rem;
@@ -77,6 +93,12 @@
         flex-direction: row;
         height: 100%;
     }
+
+    /* .corner {
+        width: 390px;
+        height: 844px;
+        border: 1px solid black;
+    } */
 
     .container {
         flex-direction: column !important;
