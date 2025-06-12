@@ -97,7 +97,7 @@ function App() {
           ...history,
           {
             role: "model",
-            text: `Training...`,
+            text: `Processing...`,
           },
         ]),
       600
@@ -105,10 +105,12 @@ function App() {
     generateRespone(formData);
   };
 
+  // ngrok http --url=legible-engaged-bluebird.ngrok-free.app 80
+
   // Helper function to update chat history
   const updateHistory = (text, imageResponse, isError = false) => {
     setChatHistory((prev) => [
-      ...prev.filter((msg) => msg.text !== "Training..."),
+      ...prev.filter((msg) => msg.text !== "Processing..."),
       { role: "model", text, isError },
     ]);
   };
@@ -126,10 +128,10 @@ function App() {
     // Format chat history for API request
     // history = history.map(({ role, text }) => ({ role, parts: [{ text }] }));
     setDownloadFile(false)
-    
+
     const requestOptions = {
       method: "POST",
-      body: formdata,
+      body: formdata
     };
 
     try {
@@ -240,12 +242,6 @@ function App() {
           {drawOpen && (
             <Draw
               handleCloseDraw={handleCloseDraw}
-              handleCloseMenu={handleCloseMenu}
-            />
-          )}
-          {scoringOpen && (
-            <Scoring
-              handleCloseScoring={handleCloseScoring}
               handleCloseMenu={handleCloseMenu}
             />
           )}

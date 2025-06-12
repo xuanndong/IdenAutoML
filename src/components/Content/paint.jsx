@@ -21,9 +21,9 @@ function paint({ handleCloseDraw, handleCloseMenu }) {
     fabricCanvas.freeDrawingBrush = new fabric.PencilBrush(fabricCanvas);
     fabricCanvas.freeDrawingBrush.color = "#000000";
     if (drawRef.current.clientWidth <= 400) {
-      fabricCanvas.freeDrawingBrush.width = 2;
-    } else {
       fabricCanvas.freeDrawingBrush.width = 4;
+    } else {
+      fabricCanvas.freeDrawingBrush.width = 6;
     }
     fabricCanvas.renderAll();
     setCanvas(fabricCanvas);

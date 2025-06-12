@@ -6,5 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     allowedHosts: ["legible-engaged-bluebird.ngrok-free.app", "localhost"],
+    port: 5175,
+    open: true
   },
 });

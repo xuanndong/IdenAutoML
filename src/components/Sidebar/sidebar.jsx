@@ -161,7 +161,7 @@ function Sidebar({
                 </label>
               </div>
               {/*========Images========*/}
-              <div>
+              {/* <div>
                 <input
                   ref={imagesRef}
                   type="file"
@@ -179,7 +179,7 @@ function Sidebar({
                     </div>
                   </li>
                 </label>
-              </div>
+              </div> */}
               {/*========Camera========*/}
               <div>
                 <li className="nav-link">
@@ -198,7 +198,7 @@ function Sidebar({
                 </li>
               </div>
               {/*========Exam marking========*/}
-              <div>
+              {/* <div>
                 <li className="nav-link">
                   <div
                     className="in last"
@@ -210,7 +210,7 @@ function Sidebar({
                     <span className="text nav-text">Scoring</span>
                   </div>
                 </li>
-              </div>
+              </div> */}
             </ul>
           </div>
 

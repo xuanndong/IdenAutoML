@@ -11,7 +11,7 @@ function createWindow() {
   Menu.setApplicationMenu(null);
   win = new BrowserWindow({ width: 1280, height: 800 }); // khai báo độ cao và rộng của cửa sổ
 
-  win.loadURL("http://localhost:5173"); // load url của bạn, ở đây là localhost:3000 vì bạn đang chạy reactjs app trên port 3000
+  win.loadURL("http://localhost:5175"); // load url của bạn, ở đây là localhost:3000 vì bạn đang chạy reactjs app trên port 3000
 
   //win.webContents.openDevTools(); // cái này là cho phép bạn sử dụng devtool như browser để dùng cho debug thôi, không có gì đặc biệt
 
